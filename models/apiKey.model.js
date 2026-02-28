@@ -1,0 +1,35 @@
+import mongoose from "mongoose"
+
+const apiKeySchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+
+    keyHash: {
+        type: String,
+        required: true,
+    },
+
+    name: {
+        type: String,
+        required: true,
+    },
+
+    isActive: {
+        type: Boolean,
+        default: true,
+    }, 
+
+    expireAt: {
+        type: Date,
+        default: null
+    }
+},
+{timestamps: true}
+)
+
+const ApiKey = mongoose.model("ApiKey", apiKeySchema)
+
+export default ApiKey
